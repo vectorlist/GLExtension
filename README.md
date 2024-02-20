@@ -18,6 +18,13 @@ HWND hwnd = CreateWindowEx(NULL, ...,hInstance, 0);
 HGLRC rc = GL::CreateGLContext(hwnd);
 HDC dc = GetDC(hwnd);
 
+//Render
+{
+    glClear(...)
+    
+    SwapBuffers(dc);
+}
+
 //Release
 GL::ReleaseContext(hwnd, rc, dc); 
 ```
