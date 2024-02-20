@@ -833,6 +833,16 @@ HGLRC GL::CreateGLContext(HWND hwnd)
 	return rc;
 }
 
+HRESULT GL::ReleaseContext(HWND hwnd, HGLRC pRC, HDC pDC)
+{
+	if(!pDC && !pDC) return E_INVALIDARG;
+	wglMakeCurrent(NULL, NULL);
+	wglDeleteContext(pRC);
+	ReleaseDC(hwnd, pDC);
+	//DestroyWindow(hwnd); optional
+    return S_OK;
+}
+
 void APIENTRY GL::glDebugCallback(GLenum source, GLenum type, GLuint id,
 	GLenum severity, GLsizei length, const GLchar *message, const void *userParam)
 {
