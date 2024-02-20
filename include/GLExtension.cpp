@@ -350,6 +350,7 @@ void Load_GL_VERSION_1_4()
 
 void Load_GL_VERSION_1_5()
 {
+	
 	GL_EXT_PROC(PFNGLGENQUERIESPROC, glGenQueries);
 	GL_EXT_PROC(PFNGLDELETEQUERIESPROC, glDeleteQueries);
 	GL_EXT_PROC(PFNGLISQUERYPROC, glIsQuery);
@@ -695,7 +696,7 @@ void GL::LoadGLExtension()
     static bool isLoaded = false;
     if(isLoaded) return;
 
-	HWND hwnd = CreateWindowEx(NULL, "STATIC", "", NULL, 0, 0,
+	HWND hwnd = CreateWindowEx(NULL, TEXT("STATIC"), TEXT(""), NULL, 0, 0,
 		0, 0, NULL, NULL, GetModuleHandle(NULL), NULL);
 
 	HDC dc = GetDC(hwnd);
@@ -796,7 +797,7 @@ HGLRC GL::CreateGLContext(HWND hwnd)
 	const char* vendor = (char*)glGetString(GL_VENDOR);
 	const char* hardware = (char*)glGetString(GL_RENDERER);
 	const char* glslVer = (char*)glGetString(GL_SHADING_LANGUAGE_VERSION);
-
+	
 	char apiInfo[128]{};
 	sprintf_s(apiInfo, "API  : OpenGL %s\nGLSL : %s\nHW   : %s\n", version, glslVer, hardware);
 	printf(apiInfo);
@@ -833,7 +834,7 @@ HGLRC GL::CreateGLContext(HWND hwnd)
 	return rc;
 }
 
-/* HRESULT GL::ReleaseContext(HWND hwnd, HGLRC pRC, HDC pDC)
+ HRESULT GL::ReleaseContext(HWND hwnd, HGLRC pRC, HDC pDC)
 {
 	if(!pDC && !pDC) return E_INVALIDARG;
 	wglMakeCurrent(NULL, NULL);
@@ -841,7 +842,7 @@ HGLRC GL::CreateGLContext(HWND hwnd)
 	ReleaseDC(hwnd, pDC);
 	//DestroyWindow(hwnd); optional
     return S_OK;
-} */
+} 
 
 void APIENTRY GL::glDebugCallback(GLenum source, GLenum type, GLuint id,
 	GLenum severity, GLsizei length, const GLchar *message, const void *userParam)
@@ -935,7 +936,7 @@ void APIENTRY GL::glDebugCallback(GLenum source, GLenum type, GLuint id,
 	/*debugMsg += std::to_string(debugIndex) + "\n";*/
 	debugMsg += message;
 
-	const int result = MessageBox(NULL, debugMsg.c_str(), "GL_KHR_debug", MB_OKCANCEL);
+	const int result = MessageBoxA(NULL, debugMsg.c_str(), "GL_KHR_debug", MB_OKCANCEL);
 
 	switch (result)
 	{

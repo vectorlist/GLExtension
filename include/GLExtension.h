@@ -5,7 +5,6 @@
 //#endif
 #define WIN32_LEAN_AND_MEAN 1
 #pragma comment(lib, "opengl32")
-//#define GL_GLEXT_PROTOTYPES 1
 
 #include <GL\glcorearb.h>
 #include <GL\wglext.h>
@@ -13,21 +12,17 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#ifdef _UNICODE
-#define _UNICODE
-#else
-#endif
 #define GL_EXT_PROC(type, func) \
 do{\
 	char buf[128]; \
 	if(func) { \
 		sprintf_s(buf, "file : %s\nline : %d\n%s's already exist.", __FILE__, __LINE__, #func); \
-		if(MessageBox(NULL, buf, TEXT("Error"), MB_OK)) exit(0); \
+		if(MessageBoxA(NULL, buf, "Error", MB_OK)) exit(0); \
 	}\
     func = (type)wglGetProcAddress(#func);\
 	if(!func) { \
 		sprintf_s(buf, "file : %s\nline : %d\n%s's failed to load.", __FILE__, __LINE__, #func); \
-		if(MessageBox(NULL, buf, TEXT("Error"), MB_OK)) exit(0); \
+		if(MessageBoxA(NULL, buf, "Error", MB_OK)) exit(0); \
 	}\
 }while(false)
 
@@ -656,7 +651,7 @@ GLAPI PFNWGLSWAPINTERVALEXTPROC					_wglSwapIntervalEXT;
 namespace GL {
 	void LoadGLExtension();
 	HGLRC CreateGLContext(HWND hwnd);
-	//HRESULT ReleaseContext(HWND hwnd, HGLRC pRC, HDC pDC);
+	HRESULT ReleaseContext(HWND hwnd, HGLRC pRC, HDC pDC);
 	void APIENTRY glDebugCallback(GLenum source, GLenum type, GLuint id,
 		GLenum severity, GLsizei length, const GLchar *message, const void *userParam);
 };
