@@ -13,17 +13,21 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#ifdef _UNICODE
+#define _UNICODE
+#else
+#endif
 #define GL_EXT_PROC(type, func) \
 do{\
 	char buf[128]; \
 	if(func) { \
 		sprintf_s(buf, "file : %s\nline : %d\n%s's already exist.", __FILE__, __LINE__, #func); \
-		if(MessageBox(NULL, buf, "Error", MB_OK)) exit(0); \
+		if(MessageBox(NULL, buf, TEXT("Error"), MB_OK)) exit(0); \
 	}\
     func = (type)wglGetProcAddress(#func);\
 	if(!func) { \
 		sprintf_s(buf, "file : %s\nline : %d\n%s's failed to load.", __FILE__, __LINE__, #func); \
-		if(MessageBox(NULL, buf, "Error", MB_OK)) exit(0); \
+		if(MessageBox(NULL, buf, TEXT("Error"), MB_OK)) exit(0); \
 	}\
 }while(false)
 

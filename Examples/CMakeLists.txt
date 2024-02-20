@@ -1,6 +1,7 @@
 #Examples
 
 add_executable(win32 win32.cpp)
+add_dependencies(win32 lib::GLExtension)
 
 target_include_directories(win32 PUBLIC ${INC_PATH})
 target_link_directories(win32 PUBLIC ${LIB_PATH})

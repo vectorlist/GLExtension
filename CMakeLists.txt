@@ -1,7 +1,10 @@
 #GLExtension CMakesLists.txt
 cmake_minimum_required(VERSION 3.14)
 
+
 project(GLExtension VERSION 0.0.0)
+
+
 
 message(STATUS "include path : ${PROJECT_SOURCE_DIR}/include")
 
