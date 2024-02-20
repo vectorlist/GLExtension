@@ -4,9 +4,10 @@ cmake_minimum_required(VERSION 3.14)
 set(CMAKE_CXX_STANDARD 14)
 project(GLExtension VERSION 0.0.0)
 
+#globar lib(optional)
 set(LIB_PATH ${CMAKE_SOURCE_DIR}/lib)
-#endif()
-set(INC_PATH ${CMAKE_SOURCE_DIR}/include)
+#local include
+set(INC_PATH ${CMAKE_CURRENT_SOURCE_DIR}/include)
 
 add_library(${PROJECT_NAME} STATIC 
         ./include/GLExtension.h     
@@ -14,7 +15,7 @@ add_library(${PROJECT_NAME} STATIC
 
 #add an alias
 add_library(lib::GLExtension ALIAS ${PROJECT_NAME})
-message(STATUS "|${PROJECT_NAME}| ALIAS lib::${PROJECT_NAME}")
+message(STATUS "|${PROJECT_NAME}|INFO| ALIAS lib::${PROJECT_NAME}")
 
 target_include_directories(${PROJECT_NAME} PUBLIC ${INC_PATH})
 
@@ -24,7 +25,7 @@ set_target_properties(${PROJECT_NAME} PROPERTIES
     ARCHIVE_OUTPUT_DIRECTORY_RELEASE ${LIB_PATH}
 )
 
-option(BUILD_EXAMPLES "Build Example" OFF)
+option(BUILD_GLEXTENTION_EXAMPLES "Build Example" OFF)
 
 if(BUILD_EXAMPLES)
     message(STATUS "Build Examples...")
