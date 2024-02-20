@@ -22,3 +22,8 @@ set_target_properties(${PROJECT_NAME} PROPERTIES
     ARCHIVE_OUTPUT_DIRECTORY_RELEASE ${LIB_PATH}
 )
 
+option(BUILD_EXAMPLES ON)
+if(${BUILD_EXAMPLES})
+    message(STATUS "Build Examples : ")
+endif()
+
