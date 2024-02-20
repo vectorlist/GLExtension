@@ -24,15 +24,51 @@ int main(int args, char* argv[])
 
     HGLRC rc = GL::CreateGLContext(hwnd);
     HDC dc = GetDC(hwnd);
+    glEnable(GL_PROGRAM_POINT_SIZE);
+
+    //# colum major
+    //      | col0 col1 col2 col3
+    // row0 |  0    4    8   12
+    // row1 |  1    5    9   13
+    // row2 |  2    6   10   14
+    // row3 |  3    7   11   15
+
+    //# row major
+    //      | col0 col1 col2 col3
+    // row0 |  0    1    2    3
+    // row1 |  4    5    6    7
+    // row2 |  8    9   10   11
+    // row3 | 12   13   14   15
+
+    //mat4 = {col0, col1, col2, col3}
+    //mat4 = { vec4(0,1,2,3), vec4(4,5,6,7),...}
+    
 
     LPCSTR vertCode = R"(
     #version 460 core
 
-    out gl_PerVertex{
+    out gl_PerVertex
+    {
         vec4 gl_Position;
-    }
+        float gl_PointSize;
+    };
+
     void main(void){
-        gl_Position = vec4(0,0,0.5,1);
+        const vec3 vtx[] = {
+            vec3(-0.5,0.2,0.5),
+            vec3(0.0,0.4,0.5),
+            vec3(0.5,0.6,0.5)
+        };
+
+        mat4 mat = {
+            vec4(1,0,0,0),
+            vec4(0,1,0,0),
+            vec4(0,0,1,0),
+            vec4(0,0,0,1)
+        };
+
+        gl_Position = mat * vec4(vtx[gl_VertexID],1);
+        gl_PointSize = 40;
     }
     )";
 
@@ -78,8 +114,8 @@ int main(int args, char* argv[])
 
         glBindVertexArray(vao);
         glUseProgram(prog);
-        glPointSize(50.f);
-        glDrawArrays(GL_POINTS, 0, 1);
+        //glPointSize(50.f);
+        glDrawArrays(GL_POINTS, 0, 3);
 
         SwapBuffers(dc);
     }

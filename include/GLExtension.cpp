@@ -851,7 +851,7 @@ void APIENTRY GL::glDebugCallback(GLenum source, GLenum type, GLuint id,
 	if (id == 131169 || id == 131185 || id == 131218 || id == 131204) return;
 
 	std::cout << "OpenGL debug message" << std::endl;
-	std::cout << "    Source: ";
+	std::cout << "Source: ";
 
 	switch (source)
 	{
@@ -876,7 +876,7 @@ void APIENTRY GL::glDebugCallback(GLenum source, GLenum type, GLuint id,
 	}
 
 	std::cout << std::endl;
-	std::cout << "    Type: ";
+	std::cout << "Type: ";
 
 	switch (type)
 	{
@@ -910,8 +910,8 @@ void APIENTRY GL::glDebugCallback(GLenum source, GLenum type, GLuint id,
 	}
 
 	std::cout << std::endl;
-	std::cout << "    ID: " << id << std::endl;
-	std::cout << "    Severity: ";
+	std::cout << "ID: " << id << std::endl;
+	std::cout << "Severity: ";
 
 	switch (severity)
 	{
@@ -930,7 +930,7 @@ void APIENTRY GL::glDebugCallback(GLenum source, GLenum type, GLuint id,
 	}
 
 	std::cout << std::endl;
-	std::cout << "    Message: " << message << std::endl;
+	std::cout << "Message: " << message << std::endl;
 
 	std::string debugMsg("Debug Index : ");
 	/*debugMsg += std::to_string(debugIndex) + "\n";*/
