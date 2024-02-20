@@ -4,14 +4,6 @@ cmake_minimum_required(VERSION 3.14)
 set(CMAKE_CXX_STANDARD 14)
 project(GLExtension VERSION 0.0.0)
 
-
-
-message(STATUS "include path : ${PROJECT_SOURCE_DIR}/include")
-
-#if(EXISTS ${LIB_PATH})
-#else()
-#message(STATUS "failed found LIB_PATH, it should be LIB_PATH :: Current Dir/lib")
-#let the Root make a lib path
 set(LIB_PATH ${CMAKE_SOURCE_DIR}/lib)
 #endif()
 set(INC_PATH ${CMAKE_SOURCE_DIR}/include)
@@ -22,6 +14,7 @@ add_library(${PROJECT_NAME} STATIC
 
 #add an alias
 add_library(lib::GLExtension ALIAS ${PROJECT_NAME})
+message(STATUS "|${PROJECT_NAME}| ALIAS lib::${PROJECT_NAME}")
 
 target_include_directories(${PROJECT_NAME} PUBLIC ${INC_PATH})
 
