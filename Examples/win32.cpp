@@ -26,6 +26,10 @@ int main(int args, char* argv[])
 
     LPCSTR vertCode = R"(
     #version 460 core
+
+    out gl_PerVertex{
+        vec4 gl_Position;
+    }
     void main(void){
         gl_Position = vec4(0,0,0.5,1);
     }
@@ -35,7 +39,7 @@ int main(int args, char* argv[])
     #version 460 core
     out vec4 color;
     void main(void){
-        color = vec4(1,0,0,1);
+        color = vec4(0.7,0.7,0.8,1);
     }
     )";
 
@@ -79,7 +83,10 @@ int main(int args, char* argv[])
         SwapBuffers(dc);
     }
 
-    GL::ReleaseContext(hwnd, rc, dc);    
+    glDeleteBuffers(1, &vao);
+    glDeleteProgram(prog);
+    GL::ReleaseContext(hwnd, rc, dc); 
+    DestroyWindow(hwnd);   
 
     return 0;
 };

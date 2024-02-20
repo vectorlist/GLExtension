@@ -1,4 +1,4 @@
 {
     "git.enabled": false,
-    "C_Cpp.errorSquiggles": "disabled"
+    //"C_Cpp.errorSquiggles": "disabled"
 }

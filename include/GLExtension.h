@@ -656,7 +656,7 @@ GLAPI PFNWGLSWAPINTERVALEXTPROC					_wglSwapIntervalEXT;
 namespace GL {
 	void LoadGLExtension();
 	HGLRC CreateGLContext(HWND hwnd);
-	HRESULT ReleaseContext(HWND hwnd, HGLRC pRC, HDC pDC);
+	//HRESULT ReleaseContext(HWND hwnd, HGLRC pRC, HDC pDC);
 	void APIENTRY glDebugCallback(GLenum source, GLenum type, GLuint id,
 		GLenum severity, GLsizei length, const GLchar *message, const void *userParam);
-}
+};

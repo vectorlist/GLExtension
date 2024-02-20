@@ -405,6 +405,7 @@ MigrationBackup/
 [Ww][Ii][Nn]32/
 [bB]uild/
 [Ll]ib/
+.vscode/*
 .vscode/
 #[Ee]xamples/
 
